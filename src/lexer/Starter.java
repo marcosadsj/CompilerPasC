@@ -1,4 +1,4 @@
-package resources;
+package lexer;
 
 public class Starter {
 	
