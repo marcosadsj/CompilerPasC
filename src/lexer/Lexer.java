@@ -12,6 +12,9 @@ public class Lexer {
 	private char currentChar = '\u0000';
 	
 	public Token getNextToken() {
+		
+		//TODO aqui ficará as condições do switch
+		
 		return new Token(Tags.ID, "");
 	}
 }
