@@ -1,6 +1,8 @@
 package lexer;
 import java.util.HashMap;
 
+import lexer.model.Description;
+import lexer.model.Token;
 import resources.KeyWords;
 import resources.Tags;
 

@@ -1,4 +1,4 @@
-package lexer;
+package lexer.model;
 import resources.Tags;
 
 public class Token {
