@@ -13,12 +13,18 @@ public class FileHelper {
 	
 	private static StringBuilder stringBuilder;
 	
+	
+	
 	public FileHelper(String path) {
 		
 		stringBuilder = new StringBuilder();
 		
 		try {
 			bufferedReader = new BufferedReader(new FileReader(path));
+		
+			fallbackPosition++;
+			currentPosition++;
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -32,6 +38,14 @@ public class FileHelper {
 		}
 	}
 		
+	public int getFallbackPosition() {
+		return fallbackPosition;
+	}
+
+	public int getCurrentPosition() {
+		return currentPosition;
+	}
+
 	public static StringBuilder getContent() {
 		return stringBuilder;
 	}
