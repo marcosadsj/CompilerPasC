@@ -36,4 +36,9 @@ public class Token {
 	public Tags getTag() {
 		return tag;
 	}
+	
+	@Override
+	public String toString() {
+		return "<" + getTag() + ", \"" + getLexeme() + "\">";
+	}
 }
