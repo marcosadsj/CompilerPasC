@@ -6,11 +6,19 @@ import java.io.RandomAccessFile;
 
 public class FileHelper {
 	
-	private RandomAccessFile acessFile;
+	private final int EOF = -1;
+	
+	private RandomAccessFile fileAcess;
+	
+	private int currentLine = 1;
+	private int currentColumn = 1;
+	
+	private int lookAhead = 0;
+	
 	
 	public FileHelper(String path) {
 		try {
-			acessFile = new RandomAccessFile(path,"r");
+			fileAcess = new RandomAccessFile(path,"r");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -21,9 +29,9 @@ public class FileHelper {
 	}
 	
 	public void closeFile() {
-		if(acessFile != null) {
+		if(fileAcess != null) {
 			try {
-				acessFile.close();
+				fileAcess.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(3);
@@ -31,6 +39,17 @@ public class FileHelper {
 				e.printStackTrace();
 				System.exit(4);
 			}
+		}
+	}
+	
+	public void fallbackCursor() {
+		try {
+			if(lookAhead != EOF) {
+				fileAcess.seek(fileAcess.getFilePointer() - 1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.exit(5);
 		}
 	}
 }
