@@ -1,0 +1,30 @@
+package resources;
+
+public enum Tags {
+	DIGIT,
+	LETTER,
+	ID,
+	KW,
+	LIT,
+	CHAR_CONST,
+	NUM_CONST,
+	OP_EQ,
+	OP_GE,
+	OP_MUL,
+	OP_NE,
+	OP_LE,
+	OP_DIV,
+	OP_GT,
+	OP_AD,
+	OP_ASS,
+	OP_LT,
+	OP_MIN,
+	SMB_OBC,
+	SMB_CBC,
+	SMB_OPA,
+	SMB_CPA,
+	SMB_COM,
+	SMB_SEM,
+	CON_NUM,
+	CON_CHAR
+}
