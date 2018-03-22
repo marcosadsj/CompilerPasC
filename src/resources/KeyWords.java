@@ -1,6 +1,5 @@
 package resources;
 
-
 public final class KeyWords {
 	
 	private static final String KW [] = 
