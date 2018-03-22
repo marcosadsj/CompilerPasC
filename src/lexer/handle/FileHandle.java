@@ -1,10 +1,10 @@
-package lexer;
+package lexer.handle;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-public class FileHelper {
+public class FileHandle {
 	
 	private final int EOF = -1;
 	
@@ -16,7 +16,7 @@ public class FileHelper {
 	private int lookAhead = 0;
 	
 	
-	public FileHelper(String path) {
+	public FileHandle(String path) {
 		try {
 			fileAcess = new RandomAccessFile(path,"r");
 		} catch (FileNotFoundException e) {

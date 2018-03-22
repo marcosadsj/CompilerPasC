@@ -1,8 +1,8 @@
-package lexer;
+package messages;
 
-public class ErrorMessages {
+public class ErrorMessage {
 	
-	private ErrorMessages() {}
+	private ErrorMessage() {}
 	
 	
 	private static final String RED_COLOR ="\n" + (char)27+ "[31m";
