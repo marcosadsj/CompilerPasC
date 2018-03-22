@@ -46,6 +46,7 @@ public class FileHelper {
 		try {
 			if(lookAhead != EOF) {
 				fileAcess.seek(fileAcess.getFilePointer() - 1);
+				currentColumn--;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
