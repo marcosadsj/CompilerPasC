@@ -26,5 +26,6 @@ public enum Tags {
 	SMB_COM,
 	SMB_SEM,
 	CON_NUM,
-	CON_CHAR
+	CON_CHAR,
+	EOF
 }

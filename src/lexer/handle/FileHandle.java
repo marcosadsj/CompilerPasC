@@ -6,17 +6,18 @@ import java.io.RandomAccessFile;
 
 public class FileHandle {
 	
-	private final int EOF = -1;
+	private final static int EOF = -1;
 	
-	private RandomAccessFile fileAcess;
+	private static RandomAccessFile fileAcess;
 	
-	private int currentLine = 1;
-	private int currentColumn = 1;
+	private static int currentLine = 1;
+	private static int currentColumn = 1;
 	
-	private int lookAhead = 0;
+	private static int lookAhead = 0;
 	
+	private FileHandle() {}
 	
-	public FileHandle(String path) {
+	public static RandomAccessFile getInstance(String path) {
 		try {
 			fileAcess = new RandomAccessFile(path,"r");
 		} catch (FileNotFoundException e) {
@@ -26,9 +27,10 @@ public class FileHandle {
 			e.printStackTrace();
 			System.exit(2);
 		}
+		return fileAcess;
 	}
 	
-	public void closeFile() {
+	public static void closeFile() {
 		if(fileAcess != null) {
 			try {
 				fileAcess.close();
@@ -42,7 +44,7 @@ public class FileHandle {
 		}
 	}
 	
-	public void fallbackCursor() {
+	public static void fallbackCursor() {
 		try {
 			if(lookAhead != EOF) {
 				fileAcess.seek(fileAcess.getFilePointer() - 1);
@@ -52,5 +54,37 @@ public class FileHandle {
 			e.printStackTrace();
 			System.exit(5);
 		}
+	}
+
+	public static int getEof() {
+		return EOF;
+	}
+
+	public static int getCurrentLine() {
+		return currentLine;
+	}
+
+	public static int getCurrentColumn() {
+		return currentColumn;
+	}
+
+	public static int getLookAhead() {
+		return lookAhead;
+	}
+
+	public static void setIncrementLine() {
+		currentLine++;
+	}
+
+	public static void setIncrementColumn() {
+		currentColumn++;
+	}
+	
+	public static void resetColumn() {
+		currentColumn = 0;
+	}
+
+	public static void setLookAhead(int lookAhead) {
+		FileHandle.lookAhead = lookAhead;
 	}
 }
