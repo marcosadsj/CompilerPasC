@@ -5,9 +5,6 @@ import java.io.RandomAccessFile;
 
 import lexer.handle.FileHandle;
 import lexer.model.Token;
-import lexer.states.Constants;
-import lexer.states.LiteralAndIdentifyers;
-import lexer.states.Operators;
 import lexer.states.Symbols;
 import resources.Tags;
 
