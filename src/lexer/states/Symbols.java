@@ -10,12 +10,11 @@ public class Symbols {
 	public static Token analyse(StringBuilder lexeme) {
 		
 		switch(Lexer.getState()) {
-			
 			case 0:
 				if(Lexer.getCurrentChar() == '{') {
 					lexeme.append(Lexer.getCurrentChar());
 					return new Token(Tags.SMB_OBC, lexeme.toString(),
-							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());	
+							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 				}else if(Lexer.getCurrentChar() == '}') {
 					lexeme.append(Lexer.getCurrentChar());
 					return new Token(Tags.SMB_CBC, lexeme.toString(),
@@ -37,6 +36,7 @@ public class Symbols {
 					return new Token(Tags.SMB_SEM, lexeme.toString(),
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 				}
+			break;
 		}
 		return null;
 	}

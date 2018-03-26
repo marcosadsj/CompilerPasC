@@ -13,18 +13,22 @@ public class ErrorMessage {
 	private static final String ERROR_CONFIG = RED_COLOR + ERROR_TYPE;
 	
 	public static void invalidCaractere(char catactere){
-		System.out.println(ERROR_CONFIG + "Caractere invalido " + catactere + " na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn());
+		System.out.println(ERROR_CONFIG + "Caractere invalido " + catactere + " na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn()+"\n");
 	}
 	
 	public static void incompleteToken(){
-		System.out.println(ERROR_CONFIG + "Token incompleto para o caractere ! na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn());
+		System.out.println(ERROR_CONFIG + "Token incompleto para o caractere ! na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn()+"\n");
 	}
 	
 	public static void unclosedString(){
-		System.out.println(ERROR_CONFIG + "String deve ser fechada com \" antes do fim de arquivo");
+		System.out.println(ERROR_CONFIG + "String deve ser fechada com \" antes do fim de arquivo"+"\n");
 	}
 	
 	public static void invalidDoublePattern(){
-		System.out.println(ERROR_CONFIG + "Padrão para double inválido na linha " + FileHandle.getCurrentLine() + " coluna " + FileHandle.getCurrentColumn());
+		System.out.println(ERROR_CONFIG + "Padrão para double inválido na linha " + FileHandle.getCurrentLine() + " coluna " + FileHandle.getCurrentColumn()+"\n");
+	}
+	
+	public static void unclosedComment() {
+		System.out.println(ERROR_CONFIG + "Comentário começado com  \\\"* não fechado!"+"\n");
 	}
 }

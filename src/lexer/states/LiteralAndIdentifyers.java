@@ -10,7 +10,7 @@ public class LiteralAndIdentifyers {
 
 	public static Token analyse(StringBuilder lexeme) {
 		
-		switch(Lexer.getCurrentChar()) {
+		switch(Lexer.getState()) {
 		
 			case 0:
 				if(Character.isLetter(Lexer.getCurrentChar())) {
@@ -46,6 +46,9 @@ public class LiteralAndIdentifyers {
 			case 20:
 				if(Lexer.getCurrentChar() == '*') {
 					Lexer.setState(21);
+				}else if(FileHandle.getLookAhead()== FileHandle.getEof()) {
+					ErrorMessage.unclosedComment();
+					return null;
 				}
 				break;
 			
@@ -55,7 +58,7 @@ public class LiteralAndIdentifyers {
 				}else {
 					Lexer.setState(20);
 				}
-			
+				break;
 			case 23:
 				if(Character.isLetterOrDigit(Lexer.getCurrentChar())) {
 					lexeme.append(Lexer.getCurrentChar());
@@ -70,6 +73,7 @@ public class LiteralAndIdentifyers {
 			
 			case 33:
 				if(Lexer.getCurrentChar() == '"') {
+					lexeme.append(Lexer.getCurrentChar());
 					Lexer.setState(0);
 					return new Token(Tags.LIT, lexeme.toString(), 
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
@@ -77,6 +81,8 @@ public class LiteralAndIdentifyers {
 				}else if(FileHandle.getLookAhead() == FileHandle.getEof()) {
 					ErrorMessage.unclosedString();
 					return null;
+				}else {
+					lexeme.append(Lexer.getCurrentChar());
 				}
 				break;
 		}

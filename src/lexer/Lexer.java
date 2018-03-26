@@ -5,6 +5,9 @@ import java.io.RandomAccessFile;
 
 import lexer.handle.FileHandle;
 import lexer.model.Token;
+import lexer.states.Constants;
+import lexer.states.LiteralAndIdentifyers;
+import lexer.states.Operators;
 import lexer.states.Symbols;
 import resources.Tags;
 
@@ -38,8 +41,6 @@ public class Lexer {
 				
 				if(FileHandle.getLookAhead() != FileHandle.getEof()) {
 					currentChar = (char) FileHandle.getLookAhead();
-				}else {
-					return new Token(Tags.EOF,"EOF",FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 				}
 			}catch(IOException e){
 				System.out.println("Erro leitura do arquivo");
@@ -60,7 +61,7 @@ public class Lexer {
 				FileHandle.resetColumn();
 			}			
 			
-			//token = Operators.analyse(lexeme);
+			token = Operators.analyse(lexeme);
 			
 			if(token != null) {
 				return token;
@@ -72,17 +73,20 @@ public class Lexer {
 				return token;
 			}
 			
-			//token = LiteralAndIdentifyers.analyse(lexeme);
+			token = LiteralAndIdentifyers.analyse(lexeme);
 			
 			if(token != null) {
 				return token;
 			}
 			
-			//token = Constants.analyse(lexeme);
+			token = Constants.analyse(lexeme);
 			
 			if(token != null) {
 				return token;
 			}
+			
+			if(FileHandle.getLookAhead() == FileHandle.getEof())
+				return new Token(Tags.EOF,"EOF",FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 		}
 	}
 	
