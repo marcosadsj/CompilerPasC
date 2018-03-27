@@ -1,8 +1,10 @@
-package lexer;
+package lexer.starter;
 
+import lexer.Lexer;
 import lexer.handle.FileHandle;
 import lexer.model.Description;
 import lexer.model.Token;
+import resources.SymbolsTable;
 import resources.Tags;
 
 public class Starter {
