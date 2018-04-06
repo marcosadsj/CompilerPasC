@@ -15,6 +15,8 @@ public class Constants {
 				if(Character.isDigit(Lexer.getCurrentChar())) {
 					lexeme.append(Lexer.getCurrentChar());
 					Lexer.setState(25);
+				}else {
+					Lexer.incrementKnewnChar();
 				}
 				//TODO PESQUISAR COMO COLOCAR ASPAS SIMPLES DENTRO DE ASPAS SIMPLES
 			break;

@@ -19,10 +19,15 @@ public class LiteralAndIdentifyers {
 				}else if(Lexer.getCurrentChar() == '"') {
 					lexeme.append(Lexer.getCurrentChar());
 					Lexer.setState(33);
-				}//TODO PESQUISAR COMO COLOCAR ASPAS SIMPLES DENTRO DE ASPAS SIMPLES
+				}else if(Lexer.getCurrentChar() == '\'') {
+					
+				}
 				else if(Lexer.getCurrentChar() == '/') {
 					Lexer.setState(16);
-				}				
+				}
+				else {
+					Lexer.incrementKnewnChar();
+				}
 				break;
 			
 			case 16:
@@ -32,7 +37,6 @@ public class LiteralAndIdentifyers {
 					Lexer.setState(20);
 				}else {
 					Lexer.setState(17);
-					lexeme.append(Lexer.getCurrentChar());
 					return Operators.analyse(lexeme);
 				}
 				break;
@@ -47,6 +51,7 @@ public class LiteralAndIdentifyers {
 				if(Lexer.getCurrentChar() == '*') {
 					Lexer.setState(21);
 				}else if(FileHandle.getLookAhead()== FileHandle.getEof()) {
+					Lexer.setState(0);
 					ErrorMessage.unclosedComment();
 					return null;
 				}
@@ -73,13 +78,26 @@ public class LiteralAndIdentifyers {
 			
 			case 33:
 				if(Lexer.getCurrentChar() == '"') {
+					
+					if(lexeme.length() == 1) {
+						Lexer.setState(0);
+						ErrorMessage.emptyString();
+						lexeme.deleteCharAt(0);
+						return null;
+					}
+					
 					lexeme.append(Lexer.getCurrentChar());
 					Lexer.setState(0);
 					return new Token(Tags.LIT, lexeme.toString(), 
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 					
 				}else if(FileHandle.getLookAhead() == FileHandle.getEof()) {
+					Lexer.setState(0);
 					ErrorMessage.unclosedString();
+					return null;
+				}else if(Lexer.getCurrentChar() == '\n'){
+					Lexer.setState(0);
+					ErrorMessage.moreThanOneLineString();
 					return null;
 				}else {
 					lexeme.append(Lexer.getCurrentChar());

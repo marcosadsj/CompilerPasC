@@ -35,6 +35,8 @@ public class Symbols {
 					lexeme.append(Lexer.getCurrentChar());
 					return new Token(Tags.SMB_SEM, lexeme.toString(),
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
+				}else {
+					Lexer.incrementKnewnChar();
 				}
 			break;
 		}

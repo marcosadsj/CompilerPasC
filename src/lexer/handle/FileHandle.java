@@ -11,7 +11,7 @@ public class FileHandle {
 	private static RandomAccessFile fileAcess;
 	
 	private static int currentLine = 1;
-	private static int currentColumn = 1;
+	private static int currentColumn = 0;
 	
 	private static int lookAhead = 0;
 	
@@ -48,7 +48,9 @@ public class FileHandle {
 		try {
 			if(lookAhead != EOF) {
 				fileAcess.seek(fileAcess.getFilePointer() - 1);
-				currentColumn--;
+
+				if(currentColumn > 1)
+					currentColumn--;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -81,7 +83,7 @@ public class FileHandle {
 	}
 	
 	public static void resetColumn() {
-		currentColumn = 0;
+		currentColumn = 1;
 	}
 
 	public static void setLookAhead(int lookAhead) {

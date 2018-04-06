@@ -2,10 +2,10 @@ package lexer.model;
 import resources.Tags;
 
 public class Token {
-	private int line;
-	private int column;
-	private String lexeme;
-	private Tags tag;
+	private final int line;
+	private final int column;
+	private final String lexeme;
+	private final Tags tag;
 	
 	public Token(Tags tag, String lexeme, int line, int column) {
 		this.line = line;

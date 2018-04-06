@@ -9,6 +9,7 @@ import lexer.states.Constants;
 import lexer.states.LiteralAndIdentifyers;
 import lexer.states.Operators;
 import lexer.states.Symbols;
+import messages.ErrorMessage;
 import resources.Tags;
 
 public class Lexer {
@@ -16,6 +17,8 @@ public class Lexer {
 	private StringBuilder lexeme;
 	
 	private static int state;
+	
+	private static int knewChar = 0;
 	
 	private static char currentChar;
 	
@@ -25,7 +28,6 @@ public class Lexer {
 	
 	public Lexer(String path) {
 		fileAcess = FileHandle.getInstance(path);
-
 	}
 	
 	public Token getNextToken() {
@@ -51,16 +53,16 @@ public class Lexer {
 				FileHandle.setIncrementColumn();
 				FileHandle.setIncrementColumn();
 				FileHandle.setIncrementColumn();
-				FileHandle.setIncrementColumn();
-			}else {
-				FileHandle.setIncrementColumn();
-			}
-			
-			if(currentChar == '\n') {
+			}else if(currentChar == '\n') {
 				FileHandle.setIncrementLine();
 				FileHandle.resetColumn();
-			}			
-			
+			}else if(currentChar == '\b'){
+				
+			}else {
+				FileHandle.setIncrementColumn();
+				incrementKnewnChar();
+			}
+						
 			token = Operators.analyse(lexeme);
 			
 			if(token != null) {
@@ -81,9 +83,11 @@ public class Lexer {
 			
 			token = Constants.analyse(lexeme);
 			
-			if(token != null) {
-				return token;
+			if(token == null && Lexer.getState() == 0 && knewChar == 5) {
+				ErrorMessage.invalidCaractere(currentChar);
 			}
+			
+			knewChar = 0;			
 			
 			if(FileHandle.getLookAhead() == FileHandle.getEof())
 				return new Token(Tags.EOF,"EOF",FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
@@ -102,4 +106,7 @@ public class Lexer {
 		return currentChar;
 	}
 	
+	public static void incrementKnewnChar() {
+		knewChar++;
+	}
 }

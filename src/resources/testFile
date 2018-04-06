@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.lang.reflect.GenericArrayType;
 
 public class Starter {
-	/**/
+/e3/ /
+	
 	public static void main(String args[]) throws IOException{
 		
 		File file = null;
@@ -21,7 +22,7 @@ public class Starter {
 			e.printStackTrace();
 		}
 	
-		,
+		
 		while(bufferedReader.ready()) {
 			try {
 				System.out.println(bufferedReader.read());

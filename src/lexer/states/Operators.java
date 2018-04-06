@@ -41,7 +41,10 @@ public class Operators {
 					Lexer.setState(0);
 					return new Token(Tags.OP_MIN, lexeme.toString(),
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
+				}else {
+					Lexer.incrementKnewnChar();
 				}
+				
 			break;
 			
 			case 3:
@@ -71,6 +74,7 @@ public class Operators {
 				}			
 			case 17:
 				Lexer.setState(0);
+				lexeme.append('/');
 				return new Token(Tags.OP_DIV, lexeme.toString(),
 						FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());	
 		
@@ -97,6 +101,7 @@ public class Operators {
 				}else {
 					Lexer.setState(0);
 					ErrorMessage.incompleteToken();
+					lexeme.deleteCharAt(0);
 					return null;
 				}
 		}

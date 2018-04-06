@@ -13,7 +13,7 @@ public class ErrorMessage {
 	private static final String ERROR_CONFIG = RED_COLOR + ERROR_TYPE;
 	
 	public static void invalidCaractere(char catactere){
-		System.out.println(ERROR_CONFIG + "Caractere invalido " + catactere + " na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn()+"\n");
+		System.out.println(ERROR_CONFIG + "Caractere invalido: \" " + catactere + "\" na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn()+"\n");
 	}
 	
 	public static void incompleteToken(){
@@ -21,7 +21,15 @@ public class ErrorMessage {
 	}
 	
 	public static void unclosedString(){
-		System.out.println(ERROR_CONFIG + "String deve ser fechada com \" antes do fim de arquivo"+"\n");
+		System.out.println(ERROR_CONFIG + "String deve ser fechada com \" antes do fim de arquivo! linha " + FileHandle.getCurrentLine() + " coluna " + FileHandle.getCurrentColumn()+"\n");
+	}
+	
+	public static void moreThanOneLineString(){
+		System.out.println(ERROR_CONFIG + "String com mais de uma linha! linha " + FileHandle.getCurrentLine() + " coluna " + FileHandle.getCurrentColumn()+"\n");
+	}
+	
+	public static void emptyString(){
+		System.out.println(ERROR_CONFIG + "String vazia! na linha " + FileHandle.getCurrentLine() + " coluna " + FileHandle.getCurrentColumn()+"\n");
 	}
 	
 	public static void invalidDoublePattern(){

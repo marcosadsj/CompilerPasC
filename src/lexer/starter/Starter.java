@@ -28,7 +28,6 @@ public class Starter {
                 if(symbolsTable.getToken(token.getLexeme())!= null) {
                 	symbolsTable.setSymbol(token, new Description());
                 }
-                
 			}
 			
 		}while(token != null && token.getTag() != Tags.EOF);
