@@ -90,7 +90,6 @@ public class LiteralAndIdentifyers {
 					Lexer.setState(0);
 					return new Token(Tags.LIT, lexeme.toString(), 
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
-					
 				}else if(FileHandle.getLookAhead() == FileHandle.getEof()) {
 					Lexer.setState(0);
 					ErrorMessage.unclosedString();

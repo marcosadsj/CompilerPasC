@@ -3,6 +3,9 @@ package lexer;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+
 import lexer.handle.FileHandle;
 import lexer.model.Token;
 import lexer.states.Constants;

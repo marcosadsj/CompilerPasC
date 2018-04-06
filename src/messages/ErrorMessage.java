@@ -13,7 +13,7 @@ public class ErrorMessage {
 	private static final String ERROR_CONFIG = RED_COLOR + ERROR_TYPE;
 	
 	public static void invalidCaractere(char catactere){
-		System.out.println(ERROR_CONFIG + "Caractere invalido: \" " + catactere + "\" na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn()+"\n");
+		System.out.println(ERROR_CONFIG + "Caractere invalido: \"" + catactere + "\" na linha " + FileHandle.getCurrentLine() + " e coluna " + FileHandle.getCurrentColumn()+"\n");
 	}
 	
 	public static void incompleteToken(){
