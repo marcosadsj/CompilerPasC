@@ -49,6 +49,7 @@ public class Operators {
 			
 			case 3:
 				if(Lexer.getCurrentChar() == '=') {
+					lexeme.append(Lexer.getCurrentChar());
 					Lexer.setState(0);
 					return new Token(Tags.OP_GE, lexeme.toString(),
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());

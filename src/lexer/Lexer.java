@@ -3,9 +3,6 @@ package lexer;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
-
 import lexer.handle.FileHandle;
 import lexer.model.Token;
 import lexer.states.Constants;
@@ -46,6 +43,7 @@ public class Lexer {
 				
 				if(FileHandle.getLookAhead() != FileHandle.getEof()) {
 					currentChar = (char) FileHandle.getLookAhead();
+					knewChar = 0;			
 				}
 			}catch(IOException e){
 				System.out.println("Erro leitura do arquivo");
@@ -60,6 +58,8 @@ public class Lexer {
 				FileHandle.setIncrementLine();
 				FileHandle.resetColumn();
 			}else if(currentChar == '\b'){
+				
+			}else if(currentChar == ' ') {
 				
 			}else {
 				FileHandle.setIncrementColumn();
@@ -89,9 +89,7 @@ public class Lexer {
 			if(token == null && Lexer.getState() == 0 && knewChar == 5) {
 				ErrorMessage.invalidCaractere(currentChar);
 			}
-			
-			knewChar = 0;			
-			
+						
 			if(FileHandle.getLookAhead() == FileHandle.getEof())
 				return new Token(Tags.EOF,"EOF",FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 		}
