@@ -26,7 +26,7 @@ public class LiteralAndIdentifyers {
 					Lexer.setState(16);
 				}
 				else {
-					Lexer.incrementKnewnChar();
+					Lexer.incrementUnknownChar();
 				}
 				break;
 			

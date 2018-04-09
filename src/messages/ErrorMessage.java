@@ -31,10 +31,7 @@ public class ErrorMessage {
 	public static void emptyString(){
 		System.out.println(ERROR_CONFIG + "String vazia! na linha " + FileHandle.getCurrentLine() + " coluna " + FileHandle.getCurrentColumn()+"\n");
 	}
-	
-	public static void invalidDoublePattern(){
-		System.out.println(ERROR_CONFIG + "Padrão para double inválido na linha " + FileHandle.getCurrentLine() + " coluna " + FileHandle.getCurrentColumn()+"\n");
-	}
+
 	
 	public static void unclosedComment() {
 		System.out.println(ERROR_CONFIG + "Comentário começado com  \\\"* não fechado!"+"\n");

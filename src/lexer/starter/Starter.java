@@ -9,23 +9,22 @@ import resources.Tags;
 
 public class Starter {
 	
-	public static void main(String args[]){
-		SymbolsTable symbolsTable = new SymbolsTable();
+	public Starter(String args){
 				
-		Lexer lexer = new Lexer("/home/marcosadsj/Github/compilerPasC/src/resources/testFile");
+		SymbolsTable symbolsTable = new SymbolsTable();
+		
+		Lexer lexer = new Lexer(args);
 		
 		Token token;
-		
+		        
 		do {
 			
 			token = lexer.getNextToken();
 			
 			if(token != null) {
                 System.out.println("Token: " + token.toString() + "\t Linha: " + FileHandle.getCurrentLine() + "\t Coluna: " + FileHandle.getCurrentColumn());
-                
-                //TODO verificar se o lexema está na tabela de símbolos
-                
-                if(symbolsTable.getToken(token.getLexeme())!= null) {
+                                
+                if(symbolsTable.getToken(token.getLexeme())== null) {
                 	symbolsTable.setSymbol(token, new Description());
                 }
 			}
@@ -34,6 +33,12 @@ public class Starter {
 		
 		FileHandle.closeFile();
 		
-		//TODO imprimir tabela de símbolos
+		System.out.println("\n********************************\n");
+		
+		System.out.println("Tabela de Símbolos");
+		
+		System.out.println(symbolsTable.toString());
+		
+		System.out.println("********************************");
 	}
 }

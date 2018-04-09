@@ -16,7 +16,7 @@ public class Constants {
 					lexeme.append(Lexer.getCurrentChar());
 					Lexer.setState(25);
 				}else {
-					Lexer.incrementKnewnChar();
+					Lexer.incrementUnknownChar();
 				}
 				//TODO PESQUISAR COMO COLOCAR ASPAS SIMPLES DENTRO DE ASPAS SIMPLES
 			break;

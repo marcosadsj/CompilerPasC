@@ -42,7 +42,7 @@ public class Operators {
 					return new Token(Tags.OP_MIN, lexeme.toString(),
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 				}else {
-					Lexer.incrementKnewnChar();
+					Lexer.incrementUnknownChar();
 				}
 				
 			break;

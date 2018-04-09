@@ -1,0 +1,12 @@
+Program Teste1
+num num1;
+
+//testando comentário de uma linha
+{	
+	if(num1 <= 10 )
+	{
+		num1 = 20;
+	}
+	
+	'd'
+}

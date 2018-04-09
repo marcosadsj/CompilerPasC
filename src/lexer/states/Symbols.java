@@ -36,7 +36,7 @@ public class Symbols {
 					return new Token(Tags.SMB_SEM, lexeme.toString(),
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 				}else {
-					Lexer.incrementKnewnChar();
+					Lexer.incrementUnknownChar();
 				}
 			break;
 		}

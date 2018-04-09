@@ -1,0 +1,14 @@
+Program Teste2
+num num1;
+/*
+
+	Testando comentário de multiplas linhas
+
+*/
+{
+	"teste"
+	if(num1 >= 20 )
+	{
+		num1 = 10;
+	}
+}

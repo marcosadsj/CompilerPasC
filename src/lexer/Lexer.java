@@ -18,7 +18,7 @@ public class Lexer {
 	
 	private static int state;
 	
-	private static int knewChar = 0;
+	private static int unknownChar = 0;
 	
 	private static char currentChar;
 	
@@ -43,7 +43,7 @@ public class Lexer {
 				
 				if(FileHandle.getLookAhead() != FileHandle.getEof()) {
 					currentChar = (char) FileHandle.getLookAhead();
-					knewChar = 0;			
+					unknownChar = 0;			
 				}
 			}catch(IOException e){
 				System.out.println("Erro leitura do arquivo");
@@ -63,7 +63,7 @@ public class Lexer {
 				
 			}else {
 				FileHandle.setIncrementColumn();
-				incrementKnewnChar();
+				incrementUnknownChar();
 			}
 						
 			token = Operators.analyse(lexeme);
@@ -86,7 +86,7 @@ public class Lexer {
 			
 			token = Constants.analyse(lexeme);
 			
-			if(token == null && Lexer.getState() == 0 && knewChar == 5) {
+			if(token == null && Lexer.getState() == 0 && unknownChar == 5) {
 				ErrorMessage.invalidCaractere(currentChar);
 			}
 						
@@ -107,7 +107,7 @@ public class Lexer {
 		return currentChar;
 	}
 	
-	public static void incrementKnewnChar() {
-		knewChar++;
+	public static void incrementUnknownChar() {
+		unknownChar++;
 	}
 }
