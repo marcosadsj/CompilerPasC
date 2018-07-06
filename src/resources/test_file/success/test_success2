@@ -1,14 +1,18 @@
-Program Teste2
-num num1;
+program Teste2
+num num1,num2,num3,num4;
+char char2,char3;
 /*
 
 	Testando comentário de multiplas linhas
 
 */
 {
-	"teste"
-	if(num1 >= 20 )
+	while(num1 <= 7)
 	{
-		num1 = 10;
-	}
+		num1 = num2 + num3;
+	};
+	
+	read char2;
+		
+	write "Testando write";
 }

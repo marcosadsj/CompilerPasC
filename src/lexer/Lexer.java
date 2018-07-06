@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import lexer.handle.FileHandle;
+import lexer.messages.ErrorMessage;
+import lexer.model.Description;
 import lexer.model.Token;
 import lexer.states.Constants;
 import lexer.states.LiteralAndIdentifyers;
 import lexer.states.Operators;
 import lexer.states.Symbols;
-import messages.ErrorMessage;
-import resources.Tags;
+import resources.SymbolsTable;
+import resources.Tag;
 
 public class Lexer {
 
@@ -24,10 +26,13 @@ public class Lexer {
 	
 	private RandomAccessFile fileAcess;
 	
+	SymbolsTable symbolsTable;
+	
 	private Token token;
 	
-	public Lexer(String path) {
+	public Lexer(String path, SymbolsTable symbolsTable) {
 		fileAcess = FileHandle.getInstance(path);
+		this.symbolsTable = symbolsTable;
 	}
 	
 	public Token getNextToken() {
@@ -44,6 +49,9 @@ public class Lexer {
 				if(FileHandle.getLookAhead() != FileHandle.getEof()) {
 					currentChar = (char) FileHandle.getLookAhead();
 					unknownChar = 0;			
+				}else
+				{
+					currentChar = '\u0000';
 				}
 			}catch(IOException e){
 				System.out.println("Erro leitura do arquivo");
@@ -57,10 +65,9 @@ public class Lexer {
 			}else if(currentChar == '\n') {
 				FileHandle.setIncrementLine();
 				FileHandle.resetColumn();
-			}else if(currentChar == '\b'){
-				
 			}else if(currentChar == ' ') {
-				
+				FileHandle.setIncrementColumn();
+
 			}else {
 				FileHandle.setIncrementColumn();
 				incrementUnknownChar();
@@ -69,29 +76,61 @@ public class Lexer {
 			token = Operators.analyse(lexeme);
 			
 			if(token != null) {
-				return token;
+				//System.out.println("Token: " + token.toString() + "\t Linha: " + FileHandle.getCurrentLine() + "\t Coluna: " + FileHandle.getCurrentColumn());
+                
+                if(symbolsTable.getToken(token.getLexeme()) == null) {
+                	symbolsTable.setSymbol(token, new Description());
+    				return token;
+                }else {
+                	return symbolsTable.getToken(token.getLexeme());
+                }
 			}
 			
 			token = Symbols.analyse(lexeme);
 			
 			if(token != null) {
-				return token;
+				//System.out.println("Token: " + token.toString() + "\t Linha: " + FileHandle.getCurrentLine() + "\t Coluna: " + FileHandle.getCurrentColumn());
+                
+                if(symbolsTable.getToken(token.getLexeme()) == null) {
+                	symbolsTable.setSymbol(token, new Description());
+    				return token;
+                }else {
+                	return symbolsTable.getToken(token.getLexeme());
+                }
 			}
 			
 			token = LiteralAndIdentifyers.analyse(lexeme);
 			
 			if(token != null) {
-				return token;
+				//System.out.println("Token: " + token.toString() + "\t Linha: " + FileHandle.getCurrentLine() + "\t Coluna: " + FileHandle.getCurrentColumn());
+                
+                if(symbolsTable.getToken(token.getLexeme()) == null) {
+                	symbolsTable.setSymbol(token, new Description());
+    				return token;
+                }else {
+                	return symbolsTable.getToken(token.getLexeme());
+                }
 			}
 			
 			token = Constants.analyse(lexeme);
 			
+			if(token != null) {
+				//System.out.println("Token: " + token.toString() + "\t Linha: " + FileHandle.getCurrentLine() + "\t Coluna: " + FileHandle.getCurrentColumn());
+                
+                if(symbolsTable.getToken(token.getLexeme()) == null) {
+                	symbolsTable.setSymbol(token, new Description());
+    				return token;
+                }else {
+                	return symbolsTable.getToken(token.getLexeme());
+                }
+			}
+						
 			if(token == null && Lexer.getState() == 0 && unknownChar == 5) {
 				ErrorMessage.invalidCaractere(currentChar);
 			}
-						
+			
 			if(FileHandle.getLookAhead() == FileHandle.getEof())
-				return new Token(Tags.EOF,"EOF",FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
+				return new Token(Tag.EOF,"EOF",FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 		}
 	}
 	

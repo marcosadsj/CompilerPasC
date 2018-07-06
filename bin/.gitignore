@@ -1,7 +1,5 @@
-/test_files/
-/resources/
+/compiler/
 /lexer/
+/parser/
+/resources/
 /view/
-/messages/
-/report/
-/snippet/

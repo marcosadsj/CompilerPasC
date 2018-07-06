@@ -1,10 +1,20 @@
 package resources;
 
-public enum Tags {
+public enum Tag {
 	DIGIT,
 	LETTER,
 	ID,
-	KW,
+	KW_PROGRAM,
+	KW_IF,
+	KW_ELSE,
+	KW_WHILE,
+	KW_WRITE,
+	KW_READ,
+	KW_NUM,
+	KW_CHAR,
+	KW_NOT,
+	KW_OR,
+	KW_AND,
 	LIT,
 	CHAR_CONST,
 	NUM_CONST,
@@ -25,7 +35,5 @@ public enum Tags {
 	SMB_CPA,
 	SMB_COM,
 	SMB_SEM,
-	CON_NUM,
-	CON_CHAR,
 	EOF
 }

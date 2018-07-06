@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
-import lexer.starter.Starter;
-import resources.Tags;
+import compiler.Starter;
+import resources.Tag;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -24,7 +24,6 @@ public class Menu {
 	private JRadioButton rdbtnFailtest1;
 	private JRadioButton rdbtnFailtest2;
 	private JRadioButton rdbtnFailtest3;
-	private JButton btnExit;
 	private JButton btnTest;
 
 	/**
@@ -61,8 +60,8 @@ public class Menu {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblTrttt = new JLabel("Lexer Tester");
-		lblTrttt.setBounds(177, 26, 98, 23);
+		JLabel lblTrttt = new JLabel("Lexer/Parser Tester");
+		lblTrttt.setBounds(165, 24, 137, 23);
 		frame.getContentPane().add(lblTrttt);
 		
 		rdbtnSuccesstest = new JRadioButton("successTest1");
@@ -89,10 +88,6 @@ public class Menu {
 		rdbtnFailtest3.setBounds(279, 168, 121, 23);
 		frame.getContentPane().add(rdbtnFailtest3);
 		
-		btnExit = new JButton("exit");
-		btnExit.setBounds(202, 230, 98, 25);
-		frame.getContentPane().add(btnExit);
-		
 		btnTest = new JButton("execute");
 		btnTest.addMouseListener(new MouseAdapter() {
 			@Override
@@ -112,18 +107,18 @@ public class Menu {
 	private void btnExecuteMouseClicked(java.awt.event.MouseEvent evt) {
 				
 		if(rdbtnSuccesstest.isSelected()) {
-			System.out.println("teste");
-			new Starter(Tags.class.getResource("test_file/success/test_success1").toString().replace("/bin", "/src").replace("file:", ""));
+			System.out.println("\n-------Lexer-------\n");
+			new Starter(Tag.class.getResource("test_file/success/test_success1").toString().replace("/bin", "/src").replace("file:", ""));
 		}else if(rdbtnSuccessTest2.isSelected()) {
-			new Starter(Tags.class.getResource("test_file/success/test_success2").toString().replace("/bin", "/src").replace("file:", ""));
+			new Starter(Tag.class.getResource("test_file/success/test_success2").toString().replace("/bin", "/src").replace("file:", ""));
 		}else if(rdbtnSuccessTest3.isSelected()) {
-			new Starter(Tags.class.getResource("test_file/success/test_success3").toString().replace("/bin", "/src").replace("file:", ""));
+			new Starter(Tag.class.getResource("test_file/success/test_success3").toString().replace("/bin", "/src").replace("file:", ""));
 		}else if(rdbtnFailtest1.isSelected()) {
-			new Starter(Tags.class.getResource("test_file/fail/test_fail1").toString().replace("/bin", "/src").replace("file:", ""));
+			new Starter(Tag.class.getResource("test_file/fail/test_fail1").toString().replace("/bin", "/src").replace("file:", ""));
 		}else if(rdbtnFailtest2.isSelected()) {
-			new Starter(Tags.class.getResource("test_file/fail/test_fail2").toString().replace("/bin", "/src").replace("file:", ""));
+			new Starter(Tag.class.getResource("test_file/fail/test_fail2").toString().replace("/bin", "/src").replace("file:", ""));
 		}else if(rdbtnFailtest3.isSelected()) {
-			new Starter(Tags.class.getResource("test_file/fail/test_fail3").toString().replace("/bin", "/src").replace("file:", ""));
+			new Starter(Tag.class.getResource("test_file/fail/test_fail3").toString().replace("/bin", "/src").replace("file:", ""));
 		}
 	}
 }

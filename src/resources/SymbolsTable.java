@@ -12,9 +12,18 @@ public class SymbolsTable {
 		
 		symbolsTable = new HashMap<>();
 		
-		for(String keyWord : KeyWords.getAllKeyWords()) {
-			symbolsTable.put(new Token(Tags.KW,keyWord), new Description());
-		}
+		symbolsTable.put(new Token(Tag.KW_PROGRAM,"program"), new Description());
+		symbolsTable.put(new Token(Tag.KW_IF,"if"), new Description());
+		symbolsTable.put(new Token(Tag.KW_ELSE,"else"), new Description());
+		symbolsTable.put(new Token(Tag.KW_WHILE,"while"), new Description());
+		symbolsTable.put(new Token(Tag.KW_WRITE,"write"), new Description());
+		symbolsTable.put(new Token(Tag.KW_READ,"read"), new Description());
+		symbolsTable.put(new Token(Tag.KW_NUM,"num"), new Description());
+		symbolsTable.put(new Token(Tag.KW_CHAR,"char"), new Description());
+		symbolsTable.put(new Token(Tag.KW_NOT,"not"), new Description());
+		symbolsTable.put(new Token(Tag.KW_OR,"or"), new Description());
+		symbolsTable.put(new Token(Tag.KW_AND,"and"), new Description());
+
 	}
 	
 	public void setSymbol(Token token, Description description) {

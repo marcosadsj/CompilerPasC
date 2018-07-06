@@ -1,7 +1,7 @@
-Program Teste1
+Program FailTeste1
 num num1;
 {
-/*
+
 	
 	if(num1 <= 10 )
 	{

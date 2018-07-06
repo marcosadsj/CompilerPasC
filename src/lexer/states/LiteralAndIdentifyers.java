@@ -2,9 +2,9 @@ package lexer.states;
 
 import lexer.Lexer;
 import lexer.handle.FileHandle;
+import lexer.messages.ErrorMessage;
 import lexer.model.Token;
-import messages.ErrorMessage;
-import resources.Tags;
+import resources.Tag;
 
 public class LiteralAndIdentifyers {
 
@@ -70,8 +70,8 @@ public class LiteralAndIdentifyers {
 				}else{
 					Lexer.setState(0);
 					FileHandle.fallbackCursor();
-					
-					return new Token(Tags.ID, lexeme.toString(),
+
+					return new Token(Tag.ID, lexeme.toString(),
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 				}
 				break;
@@ -84,19 +84,20 @@ public class LiteralAndIdentifyers {
 						ErrorMessage.emptyString();
 						lexeme.deleteCharAt(0);
 						return null;
+					}else if(lexeme.toString().contains("\n")) {
+						Lexer.setState(0);
+						ErrorMessage.moreThanOneLineString();
+						lexeme.delete(0, lexeme.length());
+						return null;
 					}
 					
 					lexeme.append(Lexer.getCurrentChar());
 					Lexer.setState(0);
-					return new Token(Tags.LIT, lexeme.toString(), 
+					return new Token(Tag.LIT, lexeme.toString(), 
 							FileHandle.getCurrentLine(), FileHandle.getCurrentColumn());
 				}else if(FileHandle.getLookAhead() == FileHandle.getEof()) {
 					Lexer.setState(0);
 					ErrorMessage.unclosedString();
-					return null;
-				}else if(Lexer.getCurrentChar() == '\n'){
-					Lexer.setState(0);
-					ErrorMessage.moreThanOneLineString();
 					return null;
 				}else {
 					lexeme.append(Lexer.getCurrentChar());

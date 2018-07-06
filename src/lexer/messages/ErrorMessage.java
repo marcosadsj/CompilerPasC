@@ -1,4 +1,4 @@
-package messages;
+package lexer.messages;
 
 import lexer.handle.FileHandle;
 

@@ -1,5 +1,5 @@
 Program Teste1
-num num1;
+num 1;
 {
 //Testando símbolos desconhecidos
 	
@@ -9,7 +9,7 @@ num num1;
 	//testando literal sem conteúdo
 	""
 	
-	if(num1 <= 10 )
+	if(num1 = 10)
 	{
 		num1 = 20;
 	}

@@ -1,12 +1,22 @@
-Program Teste1
-num num1;
+program Teste1
+num num4;
+char char2,char3;
+/*
 
-//testando comentário de uma linha
-{	
-	if(num1 <= 10 )
+	Testando comentário de multiplas linhas
+
+*/
+{
+	if(num1 == 20 )
 	{
-		num1 = 20;
-	}
+		num1 = 30;
+		num4 = 40;
+		char2 = 'b';
+		
+	}else{
+		char3 = num1;
+	};
 	
-	'd'
+	write char2/char3 + num1 * num4;	
+	
 }

@@ -1,20 +1,20 @@
 package lexer.model;
-import resources.Tags;
+import resources.Tag;
 
 public class Token {
 	private final int line;
 	private final int column;
 	private final String lexeme;
-	private final Tags tag;
+	private final Tag tag;
 	
-	public Token(Tags tag, String lexeme, int line, int column) {
+	public Token(Tag tag, String lexeme, int line, int column) {
 		this.line = line;
 		this.column = column;
 		this.lexeme = lexeme;
 		this.tag = tag;
 	}
 	
-	public Token(Tags tag, String lexeme) {
+	public Token(Tag tag, String lexeme) {
 		this.line = 0;
 		this.column = 0;
 		this.lexeme = lexeme;
@@ -33,7 +33,7 @@ public class Token {
 		return lexeme;
 	}
 
-	public Tags getTag() {
+	public Tag getTag() {
 		return tag;
 	}
 	
