@@ -1,0 +1,16 @@
+Program FailTeste2
+num num1
+{
+
+//error string com mais de uma linha
+"
+
+
+
+"
+	
+	if(num1 <= 10 )
+	{
+		num1 = 20;
+	}
+}

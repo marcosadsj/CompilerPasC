@@ -1,0 +1,16 @@
+Program Teste1
+num 1;
+{
+//Testando símbolos desconhecidos
+	
+	#
+	%
+	
+	//testando literal sem conteúdo
+	""
+	
+	if(num1 = 10)
+	{
+		num1 = 20;
+	}
+}

@@ -1,0 +1,10 @@
+Program FailTeste1
+num num1;
+{
+
+	
+	if(num1 <= 10 )
+	{
+		num1 = 20;
+	}
+}
